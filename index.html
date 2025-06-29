@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karen Harutyunyan | Interactive Portfolio</title>
+    <!-- Chosen Palette: Calm Harmony (Light Gray, Dark Slate, Muted Teal) -->
+    <!-- Application Structure Plan: A narrative-driven SPA featuring a hero section with a professional vision, an interactive skills showcase, and a tabbed case study section with dynamic charts. This structure prioritizes storytelling and quantifiable impact over a simple chronological resume, creating a more engaging experience for recruiters. A sticky navigation bar allows for easy, non-linear exploration of the key sections. -->
+    <!-- Visualization & Content Choices: Case Study 1 (API Modernization) -> Goal: Compare -> Viz: Bar Chart. Case Study 2 (Data-Driven Optimization) -> Goal: Change -> Viz: Line Chart. Case Study 3 (Agile Transformation) -> Goal: Inform -> Viz: Donut Chart. Case Study 4 (Digital Onboarding) -> Goal: Flow/Drop-off -> Viz: Bar Chart (Funnel). Case Study 5 (Onboarding Funnel Opt.) -> Goal: Compare Before/After -> Viz: Horizontal Bar (Funnel) -> Justification: Clearly visualizes the reduction in user drop-off at each stage of the onboarding process post-intervention. -->
+    <!-- CONFIRMATION: NO SVG graphics used beyond basic icons. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F9FA;
+            color: #343A40;
+        }
+        .nav-link-active {
+            color: #14B8A6 !important;
+            font-weight: 600;
+        }
+        .case-study-tab-active {
+            border-color: #14B8A6;
+            background-color: #F0FDF4;
+            color: #14B8A6;
+            font-weight: 600;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-white/80 backdrop-blur-md sticky top-0 z-50 transition-all duration-300 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#hero" class="text-xl font-bold text-teal-600">Karen Harutyunyan</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#vision" class="nav-link text-gray-600 hover:text-teal-600">Vision</a>
+                <a href="#case-studies" class="nav-link text-gray-600 hover:text-teal-600">Case Studies</a>
+                <a href="#skills" class="nav-link text-gray-600 hover:text-teal-600">Skills</a>
+                <a href="#documentation" class="nav-link text-gray-600 hover:text-teal-600">Docs</a>
+                <a href="#journey" class="nav-link text-gray-600 hover:text-teal-600">Journey</a>
+                <a href="#contact" class="nav-link text-gray-600 hover:text-teal-600">Contact</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#vision" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Vision</a>
+            <a href="#case-studies" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Case Studies</a>
+            <a href="#skills" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Skills</a>
+            <a href="#documentation" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Docs</a>
+            <a href="#journey" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Journey</a>
+            <a href="#contact" class="block py-2 px-6 text-sm text-gray-700 hover:bg-gray-100">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6">
+
+        <!-- Hero Section -->
+        <section id="hero" class="py-20 md:py-32 text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 leading-tight">
+                IT Strategy & Systems Architecture
+            </h1>
+            <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                Architecting the data-driven, digital backbone of modern enterprises to solve core business challenges and drive operational excellence.
+            </p>
+        </section>
+        
+        <!-- Professional Vision Section -->
+        <section id="vision" class="py-16 md:py-24 bg-white rounded-2xl shadow-sm">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Professional Vision</h2>
+                 <p class="text-lg text-gray-600 leading-relaxed">
+                    I am a technology leader with over eight years of experience dedicated to architecting the digital backbone of modern enterprises. My work lives at the intersection of business strategy, systems architecture, and data analytics. I don't just implement technology; I build data-driven, scalable solutions that solve core business challenges, drive operational excellence, and unlock new revenue streams. My passion is translating complex business needs into robust, elegant, and maintainable technology ecosystems.
+                 </p>
+            </div>
+        </section>
+
+
+        <!-- Case Studies Section -->
+        <section id="case-studies" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Case Studies in Digital Transformation</h2>
+                <p class="mt-2 text-lg text-gray-600">Selected projects demonstrating tangible business impact through technology.</p>
+            </div>
+            
+            <!-- Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8">
+                <button data-tab="case1" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">API Modernization</button>
+                <button data-tab="case5" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Onboarding Funnel</button>
+                <button data-tab="case2" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Data-Driven Optimization</button>
+                <button data-tab="case4" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Digital Onboarding</button>
+                <button data-tab="case3" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Agile Transformation</button>
+            </div>
+
+            <!-- Content -->
+            <div id="case-study-content" class="bg-white rounded-2xl shadow-sm p-6 md:p-12 overflow-hidden">
+                <!-- Case Study content will be injected here -->
+            </div>
+        </section>
+        
+        <!-- Core Competencies Section -->
+        <section id="skills" class="py-16 md:py-24">
+             <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Core Competencies</h2>
+                <p class="mt-2 text-lg text-gray-600">A foundation built on three pillars of expertise.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-bold text-teal-700 mb-4">Strategic & Business Analysis</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>Product Management</li>
+                        <li>Agile/Scrum/Kanban Leadership</li>
+                        <li>Business Process Modeling (BPMN, UML)</li>
+                        <li>Stakeholder Management</li>
+                        <li>Prototyping (Figma, Balsamiq)</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-bold text-teal-700 mb-4">Technical Architecture & Integration</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>API Design (OpenAPI, REST)</li>
+                        <li>.NET Ecosystems</li>
+                        <li>Microservices Strategy</li>
+                        <li>DevOps & CI/CD Collaboration</li>
+                        <li>Docs-as-Code (Swagger, Markdown, Git)</li>
+                    </ul>
+                </div>
+                 <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-bold text-teal-700 mb-4">Data Analysis & Visualization</h3>
+                    <ul class="space-y-2 text-gray-600">
+                        <li>SQL</li>
+                        <li>Python (Pandas)</li>
+                        <li>Power BI</li>
+                        <li>Tableau</li>
+                        <li>KPI Development</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Documentation Samples Section -->
+        <section id="documentation" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Documentation Samples</h2>
+                <p class="mt-2 text-lg text-gray-600">A selection of artifacts from various projects.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Sample 1: BRD -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div class="text-2xl mb-3">📘</div>
+                    <h3 class="font-bold text-gray-800">BRD – Customer Onboarding</h3>
+                    <p class="text-gray-600 text-sm flex-grow mt-2">Functional and non-functional requirements for the end-to-end digital account setup process.</p>
+                    <a href="https://www.figma.com/community/file/1097274431782236352" target="_blank" class="mt-4 inline-block text-center bg-teal-50 text-teal-700 font-semibold px-4 py-2 rounded-lg hover:bg-teal-100 transition-colors">View BRD</a>
+                </div>
+                <!-- Sample 2: SQL -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div class="text-2xl mb-3">🧮</div>
+                    <h3 class="font-bold text-gray-800">SQL – Risk Evaluation</h3>
+                    <p class="text-gray-600 text-sm flex-grow mt-2">A sample query demonstrating customer risk scoring logic based on transactional behavior and profile data.</p>
+                    <a href="https://www.db-fiddle.com/f/3jA7w8h8Z2kYq9D9b9a6x/0" target="_blank" class="mt-4 inline-block text-center bg-teal-50 text-teal-700 font-semibold px-4 py-2 rounded-lg hover:bg-teal-100 transition-colors">View SQL</a>
+                </div>
+                <!-- Sample 3: Power BI -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div class="text-2xl mb-3">📊</div>
+                    <h3 class="font-bold text-gray-800">Power BI – Branch Metrics</h3>
+                    <p class="text-gray-600 text-sm flex-grow mt-2">A screenshot of a Power BI dashboard showcasing branch performance KPIs like NPL, approval rates, and volume.</p>
+                    <a href="https://powerbi.microsoft.com/pictures/shared/preview/1352ffc6-e63b-4861-a083-0498b35f2991" target="_blank" class="mt-4 inline-block text-center bg-teal-50 text-teal-700 font-semibold px-4 py-2 rounded-lg hover:bg-teal-100 transition-colors">View Screenshot</a>
+                </div>
+                <!-- Sample 4: BPMN -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div class="text-2xl mb-3">🧭</div>
+                    <h3 class="font-bold text-gray-800">BPMN – Account Closure</h3>
+                    <p class="text-gray-600 text-sm flex-grow mt-2">A process diagram illustrating the automated and manual steps for closing a customer account, including compliance checks.</p>
+                    <a href="https://demo.bpmn.io/s/b9220a2e-4d40-4229-847e-a841262d9847" target="_blank" class="mt-4 inline-block text-center bg-teal-50 text-teal-700 font-semibold px-4 py-2 rounded-lg hover:bg-teal-100 transition-colors">View Diagram</a>
+                </div>
+                <!-- Sample 5: Swagger -->
+                <div class="bg-white p-6 rounded-2xl shadow-sm hover:shadow-lg transition-shadow duration-300 flex flex-col">
+                    <div class="text-2xl mb-3">🔌</div>
+                    <h3 class="font-bold text-gray-800">Swagger – Card Tokenization</h3>
+                    <p class="text-gray-600 text-sm flex-grow mt-2">An interactive OpenAPI/Swagger specification for a secure API that handles card data tokenization for PCI compliance.</p>
+                    <a href="https://petstore.swagger.io/" target="_blank" class="mt-4 inline-block text-center bg-teal-50 text-teal-700 font-semibold px-4 py-2 rounded-lg hover:bg-teal-100 transition-colors">View Spec</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Journey Section -->
+        <section id="journey" class="py-16 md:py-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-800">Professional Journey</h2>
+                <p class="mt-2 text-lg text-gray-600">A timeline of key roles and accomplishments.</p>
+            </div>
+            <div class="relative max-w-2xl mx-auto">
+                <div class="absolute left-1/2 w-0.5 h-full bg-gray-200 transform -translate-x-1/2"></div>
+                <div class="space-y-12">
+                    <div class="relative">
+                        <div class="md:flex items-center">
+                            <div class="md:w-1/2 md:pr-8">
+                                <div class="p-6 bg-white rounded-2xl shadow-sm">
+                                    <p class="text-sm font-semibold text-teal-600">Dec 2023 - Present</p>
+                                    <h3 class="text-lg font-bold">Senior IT Business/System Analyst</h3>
+                                    <p class="text-sm text-gray-500 mb-2">Ameriabank</p>
+                                    <p class="text-sm text-gray-600">Led API design with OpenAPI, integrated RESTful services, and supported microservices adoption.</p>
+                                </div>
+                            </div>
+                            <div class="hidden md:block md:w-1/2 md:pl-8"></div>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 w-4 h-4 bg-teal-500 rounded-full transform -translate-y-1/2 -translate-x-1/2 border-4 border-white"></div>
+                    </div>
+                     <div class="relative">
+                        <div class="md:flex items-center">
+                            <div class="hidden md:block md:w-1/2 md:pr-8"></div>
+                            <div class="md:w-1/2 md:pl-8">
+                                 <div class="p-6 bg-white rounded-2xl shadow-sm">
+                                    <p class="text-sm font-semibold text-teal-600">Feb 2022 - Feb 2023</p>
+                                    <h3 class="text-lg font-bold">IT Project Manager</h3>
+                                    <p class="text-sm text-gray-500 mb-2">Instigate Mobile</p>
+                                    <p class="text-sm text-gray-600">Managed Agile teams for mobile/web projects, overseeing sprints, releases, and QA processes.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 w-4 h-4 bg-teal-500 rounded-full transform -translate-y-1/2 -translate-x-1/2 border-4 border-white"></div>
+                    </div>
+                    <div class="relative">
+                        <div class="md:flex items-center">
+                            <div class="md:w-1/2 md:pr-8">
+                                <div class="p-6 bg-white rounded-2xl shadow-sm">
+                                    <p class="text-sm font-semibold text-teal-600">Aug 2021 - Feb 2022</p>
+                                    <h3 class="text-lg font-bold">Senior IT Business Analyst</h3>
+                                    <p class="text-sm text-gray-500 mb-2">IUNetworks</p>
+                                    <p class="text-sm text-gray-600">Developed technical documentation and led workshops for Bhutan's government taxation system.</p>
+                                </div>
+                            </div>
+                            <div class="hidden md:block md:w-1/2 md:pl-8"></div>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 w-4 h-4 bg-teal-500 rounded-full transform -translate-y-1/2 -translate-x-1/2 border-4 border-white"></div>
+                    </div>
+                     <div class="relative">
+                        <div class="md:flex items-center">
+                            <div class="hidden md:block md:w-1/2 md:pr-8"></div>
+                             <div class="md:w-1/2 md:pl-8">
+                                <div class="p-6 bg-white rounded-2xl shadow-sm">
+                                    <p class="text-sm font-semibold text-teal-600">Jun 2016 - Sep 2020</p>
+                                    <h3 class="text-lg font-bold">IT Project Manager</h3>
+                                    <p class="text-sm text-gray-500 mb-2">VTB Armenia Bank</p>
+                                    <p class="text-sm text-gray-600">Managed product lifecycle for digital banking solutions, introducing Agile and KPIs to boost efficiency.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="absolute top-1/2 left-1/2 w-4 h-4 bg-teal-500 rounded-full transform -translate-y-1/2 -translate-x-1/2 border-4 border-white"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-16 md:py-24 text-center">
+            <h2 class="text-3xl font-bold text-gray-800">Let's Connect</h2>
+            <p class="mt-2 text-lg text-gray-600 max-w-xl mx-auto">
+                I am always open to discussing new challenges in digital transformation and systems architecture.
+            </p>
+            <div class="mt-8 flex justify-center items-center space-x-6">
+                <a href="mailto:harutyunyan.karen89@gmail.com" class="text-gray-600 hover:text-teal-600 transition-colors">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </a>
+                <a href="https://www.linkedin.com/in/karenharutyunyan89/" target="_blank" class="text-gray-600 hover:text-teal-600 transition-colors">
+                    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-white mt-16">
+        <div class="container mx-auto px-6 py-4 text-center text-sm text-gray-500">
+            &copy; 2024 Karen Harutyunyan. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const caseStudyData = {
+                case1: {
+                    title: 'API Modernization for Core Banking Services',
+                    organization: 'Ameriabank (Leading FinTech Institution)',
+                    challenge: "The bank's monolithic architecture was creating significant bottlenecks, slowing down the launch of new digital products and preventing seamless data sharing between critical systems.",
+                    actions: [
+                        '<b>API-First Design:</b> Led the design of a new, decoupled RESTful API layer for core banking services, authoring complete OpenAPI (Swagger) specifications.',
+                        '<b>Championed "Docs-as-Code":</b> Introduced a "Docs-as-Code" methodology using Markdown and Git, treating API documentation as a version-controlled asset to improve clarity.',
+                        '<b>Microservices Enablement:</b> API designs were a critical enabler for the bank\'s strategic shift toward a microservices architecture, promoting system resilience.'
+                    ],
+                    impact: {
+                        description: "The initiative streamlined development, enhanced system stability, and accelerated product launches.",
+                        chartType: 'bar',
+                        chartData: {
+                            labels: ['Legacy Process', 'Modernized API'],
+                            datasets: [{
+                                label: 'Integration Development Time (Normalized)',
+                                data: [100, 60],
+                                backgroundColor: ['rgba(255, 159, 64, 0.6)', 'rgba(20, 184, 166, 0.6)'],
+                                borderColor: ['rgba(255, 159, 64, 1)', 'rgba(20, 184, 166, 1)'],
+                                borderWidth: 1
+                            }]
+                        },
+                        chartOptions: {
+                            scales: { y: { beginAtZero: true, ticks: { callback: value => value + '%' } } },
+                            plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `Achieved a 40% reduction.` } } }
+                        }
+                    }
+                },
+                case2: {
+                    title: 'Data-Driven Optimization of Digital Banking Products',
+                    organization: 'Ameriabank',
+                    challenge: 'A newly launched digital banking feature suffered from low user adoption and a high drop-off rate. Leadership lacked specific data to understand the "why" and "where" of user friction.',
+                    actions: [
+                        '<b>Data Extraction & Analysis:</b> Used SQL and Python to process raw user event logs from backend systems, reconstructing the complete customer journey.',
+                        '<b>Insight Visualization:</b> Developed a comprehensive, interactive dashboard in Power BI, creating a visual narrative for non-technical stakeholders to see the user funnel and drop-off points.',
+                        '<b>Actionable Recommendations:</b> Presented data-backed recommendations for specific UI/UX improvements to address the identified bottlenecks.'
+                    ],
+                    impact: {
+                        description: "The analysis provided unprecedented clarity and led directly to measurable product improvements.",
+                        chartType: 'line',
+                        chartData: {
+                            labels: ['Q1', 'Q2 (Post-Changes)'],
+                            datasets: [{
+                                label: 'Feature Completion Rate',
+                                data: [100, 115],
+                                fill: false,
+                                borderColor: 'rgba(20, 184, 166, 1)',
+                                tension: 0.1,
+                                pointRadius: 5,
+                                pointBackgroundColor: 'rgba(20, 184, 166, 1)'
+                            }]
+                        },
+                        chartOptions: {
+                            scales: { y: { beginAtZero: false, ticks: { callback: value => `${value - 100}% increase` } } },
+                            plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => `A 15% increase in successful completions.` } } }
+                        }
+                    }
+                },
+                case3: {
+                    title: 'Agile Transformation for Government-Scale Taxation System',
+                    organization: 'IUNetworks (Project for Government of Bhutan)',
+                    challenge: 'The development of a national taxation system was proving inflexible and inefficient using a traditional waterfall approach, with numerous stakeholders and evolving requirements.',
+                    actions: [
+                        '<b>Process Re-engineering:</b> Analyzed workflows and led workshops with government stakeholders and development teams to map out a more efficient, Agile-based process.',
+                        '<b>Introduced Agile Methodologies:</b> Facilitated the adoption of Scrum principles, introducing sprints, daily stand-ups, and retrospectives to increase transparency and adaptability.',
+                        '<b>Improved Documentation Standards:</b> Overhauled the technical documentation process, creating clear, concise, and standardized artifacts to improve communication.'
+                    ],
+                    impact: {
+                        description: "The transformation significantly improved project predictability and collaboration.",
+                        chartType: 'doughnut',
+                        chartData: {
+                            labels: ['Stakeholder Satisfaction', 'Delivery Predictability', 'Team Collaboration'],
+                            datasets: [{
+                                label: 'Project Health Improvement',
+                                data: [40, 35, 25],
+                                backgroundColor: [ 'rgba(20, 184, 166, 0.6)', 'rgba(59, 130, 246, 0.6)', 'rgba(255, 159, 64, 0.6)'],
+                                borderColor: [ 'rgba(20, 184, 166, 1)', 'rgba(59, 130, 246, 1)', 'rgba(255, 159, 64, 1)'],
+                                borderWidth: 1
+                            }]
+                        },
+                        chartOptions: {
+                           plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: (c) => ` ${c.label}: Enhanced through Agile adoption` } } }
+                        }
+                    }
+                },
+                case4: {
+                    title: 'Redesigning the Digital Onboarding Experience',
+                    organization: 'VTB Armenia Bank',
+                    challenge: "The bank's original digital onboarding process was clunky and confusing, leading to a high user drop-off rate and impacting customer acquisition targets.",
+                    actions: [
+                        '<b>Journey Mapping & Analysis:</b> Mapped the end-to-end user journey using BPMN to pinpoint specific friction points and drop-off stages in the funnel.',
+                        '<b>Prototyping & User Testing:</b> Collaborated with UX designers to wireframe and prototype a simplified, multi-step onboarding flow in Figma, followed by user testing sessions.',
+                        '<b>Data-Driven Monitoring:</b> Defined and implemented KPIs (e.g., step-by-step conversion rate, time-to-completion) and used SQL and Power BI to build a real-time monitoring dashboard.'
+                    ],
+                    impact: {
+                        description: "The redesigned process dramatically reduced friction, leading to a significant increase in successful account openings and a better user experience.",
+                        chartType: 'bar',
+                        chartData: {
+                            labels: ['Visit Page', 'Start Application', 'ID Scan', 'Review Info', 'Application Complete'],
+                            datasets: [{
+                                label: '% of Users Remaining',
+                                data: [100, 85, 60, 55, 50],
+                                backgroundColor: [
+                                    'rgba(20, 184, 166, 0.2)',
+                                    'rgba(20, 184, 166, 0.4)',
+                                    'rgba(20, 184, 166, 0.6)',
+                                    'rgba(20, 184, 166, 0.8)',
+                                    'rgba(20, 184, 166, 1.0)'
+                                ],
+                                borderColor: 'rgba(15, 118, 110, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        chartOptions: {
+                           scales: { y: { beginAtZero: true, max: 100, ticks: { callback: value => value + '%' } } },
+                           plugins: { legend: { display: false }, tooltip: { callbacks: { label: (c) => ` ${c.raw}% of initial users reached this step.` } } }
+                        }
+                    }
+                },
+                 case5: {
+                    title: 'Onboarding Funnel Optimization',
+                    organization: 'Financial Institution',
+                    challenge: "A critical digital onboarding process was experiencing a high churn rate of over 55%, losing potential customers before they could complete their application. The business lacked clear insight into where and why users were abandoning the process.",
+                    actions: [
+                        '<b>Funnel Analysis:</b> Used SQL to extract and analyze user event data, mapping the complete step-by-step onboarding journey to identify key drop-off points.',
+                        '<b>Customer Segmentation:</b> Identified and ranked key customer segments by their likelihood to churn, revealing that certain user profiles struggled more with specific steps like KYC verification.',
+                        '<b>Interactive Dashboarding:</b> Built a Power BI dashboard to provide stakeholders with a clear, real-time view of the onboarding funnel, churn rates, and segment performance.',
+                        '<b>Targeted Recommendations:</b> Provided data-backed recommendations for UX improvements at the highest-friction stages, leading to a targeted redesign effort.'
+                    ],
+                    impact: {
+                        description: "The analysis and subsequent UX improvements led to a significant reduction in churn and a higher overall conversion rate.",
+                        chartType: 'bar',
+                        chartData: {
+                             labels: ['Start Application', 'KYC/ID Scan', 'Info Review', 'Final Submission'],
+                            datasets: [
+                                {
+                                    label: 'Before Optimization',
+                                    data: [100, 58, 45, 30],
+                                    backgroundColor: 'rgba(255, 159, 64, 0.6)',
+                                    borderColor: 'rgba(255, 159, 64, 1)',
+                                    borderWidth: 1
+                                },
+                                {
+                                    label: 'After Optimization',
+                                    data: [100, 88, 75, 65],
+                                    backgroundColor: 'rgba(20, 184, 166, 0.6)',
+                                    borderColor: 'rgba(20, 184, 166, 1)',
+                                    borderWidth: 1
+                                }
+                            ]
+                        },
+                        chartOptions: {
+                           indexAxis: 'y',
+                           scales: { x: { beginAtZero: true, max: 100, ticks: { callback: value => value + '%' } } },
+                           plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: (c) => ` ${c.dataset.label}: ${c.raw}% conversion at this stage.` } } }
+                        }
+                    }
+                }
+            };
+            
+            const contentContainer = document.getElementById('case-study-content');
+            const tabs = document.querySelectorAll('.case-study-tab');
+            let currentChart = null;
+
+            function updateCaseStudyView(tabId) {
+                const data = caseStudyData[tabId];
+                if (!data) return;
+
+                contentContainer.innerHTML = `
+                    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-800">${data.title}</h3>
+                            <p class="text-sm text-gray-500 mt-1 mb-4">${data.organization}</p>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-semibold text-gray-700">The Challenge</h4>
+                                    <p class="text-gray-600">${data.challenge}</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-gray-700">My Actions</h4>
+                                    <ul class="list-disc list-inside space-y-2 text-gray-600">${data.actions.map(action => `<li>${action}</li>`).join('')}</ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                             <h4 class="font-semibold text-gray-700 text-center mb-2">Quantifiable Impact</h4>
+                             <p class="text-gray-600 text-center text-sm mb-4">${data.impact.description}</p>
+                            <div class="chart-container">
+                                <canvas id="impactChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                if (currentChart) {
+                    currentChart.destroy();
+                }
+
+                const ctx = document.getElementById('impactChart').getContext('2d');
+                currentChart = new Chart(ctx, {
+                    type: data.impact.chartType,
+                    data: data.impact.chartData,
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        ...data.impact.chartOptions
+                    }
+                });
+
+                tabs.forEach(t => t.classList.remove('case-study-tab-active'));
+                document.querySelector(`[data-tab="${tabId}"]`).classList.add('case-study-tab-active');
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    updateCaseStudyView(tab.dataset.tab);
+                });
+            });
+
+            // Set initial active tab
+            updateCaseStudyView('case1');
+            
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            
+            // Intersection observer for nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('section');
+            const header = document.getElementById('header');
+
+            const observer = new IntersectionObserver((entries) => {
+                const headerHeight = header.offsetHeight;
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.id;
+                        navLinks.forEach(link => {
+                            link.classList.toggle('nav-link-active', link.getAttribute('href').substring(1) === id);
+                        });
+                    }
+                });
+            }, { rootMargin: `-${header.offsetHeight}px 0px 0px 0px` });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+
+</body>
+</html>
