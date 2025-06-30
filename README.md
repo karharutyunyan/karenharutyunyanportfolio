@@ -1,4 +1,4 @@
-# karenharutyunyan
+
 # Digital Transformation - Data Flagging Workflow
 
 ![Sequence Diagram](sequence-diagram.png)
