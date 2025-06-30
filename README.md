@@ -32,10 +32,10 @@ The sequence diagram (`sequence-diagram.png`) captures multi-service interaction
 ## 🗂️ Repository Structure
 
 ```bash
-.
-├── sequence-diagram.png      # UML Sequence Diagram (rendered on this page)
-├── diagrams/
-│   └── sequence-diagram.drawio   # Editable source file (draw.io format)
-├── docs/
-│   └── process.md             # Detailed textual process descriptions
-└── README.md                  # This file
+
+## 📂 Files
+
+- `sequence-diagram.png` – UML diagram shown above
+- `README.md` – This file
+
+
