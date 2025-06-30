@@ -110,6 +110,8 @@
                 <button data-tab="case2" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Data-Driven Optimization</button>
                 <button data-tab="case4" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Digital Onboarding</button>
                 <button data-tab="case3" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Agile Transformation</button>
+            <button data-tab="case6" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Diagramming</button>
+
             </div>
 
             <!-- Content -->
@@ -291,7 +293,7 @@
 
     <footer class="bg-white mt-16">
         <div class="container mx-auto px-6 py-4 text-center text-sm text-gray-500">
-            &copy; 2024 Karen Harutyunyan. All Rights Reserved.
+            &copy; 2025 Karen Harutyunyan. All Rights Reserved.
         </div>
     </footer>
 
@@ -457,8 +459,38 @@
                         }
                     }
                 }
-            };
-            
+            }
+                case6:{
+                    title: 'Sequence Diagram for Data Flagging Process',
+    organization: 'Sample GitHub Repository',
+    challenge: 'Needed to clearly document and visualize complex data migration and validation workflows involving multiple internal and external services.',
+    actions: [
+        '<b>Created UML Sequence Diagram:</b> Using tools like draw.io, documented the interactions between actors and services.',
+        '<b>GitHub Storage:</b> Committed diagram source files and images to a structured GitHub repo for version control and easy sharing.',
+        '<b>Integration:</b> Linked the diagrams to documentation (Markdown READMEs) for stakeholder visibility.'
+    ],
+    impact: {
+        description: 'Improved clarity of workflows, enabling faster onboarding of new developers and easier discussions with stakeholders.',
+        chartType: 'bar',
+        chartData: {
+            labels: ['Before Diagram', 'After Diagram'],
+            datasets: [{
+                label: 'Workflow Clarity (Score)',
+                data: [60, 95],
+                backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(20, 184, 166, 0.6)'],
+                borderColor: ['rgba(255, 99, 132, 1)', 'rgba(20, 184, 166, 1)'],
+                borderWidth: 1
+            }]
+        },
+        chartOptions: {
+            scales: { y: { beginAtZero: true, max: 100, ticks: { callback: value => value + '%' } } },
+            plugins: { legend: { display: false } }
+        }
+    }
+}     ;
+          <div style="text-align:center; margin-top:20px;">
+    <img src="https://raw.githubusercontent.com/karharutyunyan/karenharutyunyanportfolio/main/sequence-diagram.png" alt="Sequence Diagram" style="max-width:100%; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1);" />
+</div>  
             const contentContainer = document.getElementById('case-study-content');
             const tabs = document.querySelectorAll('.case-study-tab');
             let currentChart = null;
