@@ -110,7 +110,7 @@
                 <button data-tab="case2" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Data-Driven Optimization</button>
                 <button data-tab="case4" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Digital Onboarding</button>
                 <button data-tab="case3" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Agile Transformation</button>
-            <button data-tab="case6" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Diagramming</button>
+                <button data-tab="case6" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Diagramming</button>
 
             </div>
 
@@ -458,9 +458,8 @@
                            plugins: { legend: { position: 'top' }, tooltip: { callbacks: { label: (c) => ` ${c.dataset.label}: ${c.raw}% conversion at this stage.` } } }
                         }
                     }
-                }
-            },
-        case6:{
+                },
+            case6:{
                     title: 'Sequence Diagram for Data Flagging Process',
     organization: 'Sample GitHub Repository',
     challenge: 'Needed to clearly document and visualize complex data migration and validation workflows involving multiple internal and external services.',
@@ -487,7 +486,9 @@
             plugins: { legend: { display: false } }
         }
     }
-}     ;
+}   
+        }
+         ;
          
             const contentContainer = document.getElementById('case-study-content');
             const tabs = document.querySelectorAll('.case-study-tab');
