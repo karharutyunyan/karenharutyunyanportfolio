@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 chartOptions: { scales: { y: { beginAtZero: true, ticks: { callback: v => v + '%' } } }, plugins: { legend: { display: false }}}
             }
         },
-        case2: { title:'Data-Driven Optimization',organization:'Ameriabank',challenge:'High drop-off in new feature.',actions:['SQL/Python event log analysis','Power BI funnel dashboards','Targeted UX fixes'],impact:{description:'15% higher completions.',chartType:'line',chartData:{labels:['Q1','Q2'],datasets:[{data:[100,115],borderColor:'rgba(20,184,166,1)',tension:.1}]} ,chartOptions:{scales:{y:{beginAtZero:false}},plugins:{legend:{display:false}}}}},
+        case2: { /* short version */ title:'Data-Driven Optimization',organization:'Ameriabank',challenge:'High drop-off in new feature.',actions:['SQL/Python event log analysis','Power BI funnel dashboards','Targeted UX fixes'],impact:{description:'15% higher completions.',chartType:'line',chartData:{labels:['Q1','Q2'],datasets:[{data:[100,115],borderColor:'rgba(20,184,166,1)',tension:.1}]} ,chartOptions:{scales:{y:{beginAtZero:false}},plugins:{legend:{display:false}}}}},
         case3: { title:'Agile Transformation for Tax System',organization:'IUNetworks/Bhutan',challenge:'Waterfall failed with many stakeholders.',actions:['Workshops','Scrum sprints','Docs re-org'],impact:{description:'Project predictability up.',chartType:'doughnut',chartData:{labels:['Stakeholder Sat','Predictability','Collab'],datasets:[{data:[40,35,25],backgroundColor:['rgba(20,184,166,0.6)','rgba(59,130,246,0.6)','rgba(255,159,64,0.6)']}]},chartOptions:{plugins:{legend:{position:'top'}}}}},
         case4: { title:'Redesigning Digital Onboarding',organization:'VTB Armenia Bank',challenge:'High drop-off in onboarding.',actions:['Mapped journey','Figma UX','Built KPIs in Power BI'],impact:{description:'Increased completed apps.',chartType:'bar',chartData:{labels:['Visit','Start','ID','Review','Complete'],datasets:[{data:[100,85,60,55,50],backgroundColor:['rgba(20,184,166,0.2)','rgba(20,184,166,0.4)','rgba(20,184,166,0.6)','rgba(20,184,166,0.8)','rgba(20,184,166,1)']}]} ,chartOptions:{scales:{y:{beginAtZero:true,max:100}},plugins:{legend:{display:false}}}}},
         case5: { title:'Onboarding Funnel Optimization',organization:'Financial Institution',challenge:'55% churn.',actions:['SQL funnel','Segment analysis','UX redesign'],impact:{description:'Conversions up.',chartType:'bar',chartData:{labels:['Start','KYC','Review','Submit'],datasets:[{data:[100,88,75,65],backgroundColor:'rgba(20,184,166,0.6)'}]} ,chartOptions:{indexAxis:'y',scales:{x:{beginAtZero:true,max:100}},plugins:{legend:{display:false}}}}},
@@ -148,9 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
             actions:['Made UML in draw.io','Versioned in GitHub','Linked in markdown'],
             impact:{
                 description:'Improved dev onboarding.',
-                chartType:'bar',
-                chartData:{labels:['Before','After'],datasets:[{data:[60,95],backgroundColor:['rgba(255,99,132,0.6)','rgba(20,184,166,0.6)']}]},
-                chartOptions:{scales:{y:{beginAtZero:true,max:100}},plugins:{legend:{display:false}}},
                 customHtml:`<div style="text-align:center;margin-top:20px;">
                     <img src="https://raw.githubusercontent.com/karharutyunyan/karenharutyunyanportfolio/main/sequence-diagram.png"
                          alt="Sequence Diagram"
@@ -171,12 +168,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = caseStudyData[tabId];
         if (!data) return;
 
-        // Clear previous content and destroy old chart instance
-        if (currentChart) {
-            currentChart.destroy();
-        }
-        
-        // Set the base HTML content, giving the right-hand column a unique ID
+        // Conditionally create the content for the right-side grid column
+        const impactContent = data.impact.customHtml
+            ? data.impact.customHtml // If custom HTML exists, use it
+            : `<h4 class="font-semibold text-gray-700 text-center mb-2">Quantifiable Impact</h4>
+               <p class="text-gray-600 text-center text-sm mb-4">${data.impact.description}</p>
+               <div class="chart-container"><canvas id="impactChart"></canvas></div>`;
+
         contentContainer.innerHTML = `
             <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                 <div>
@@ -189,15 +187,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         ${data.actions.map(a => `<li>${a}</li>`).join('')}
                     </ul>
                 </div>
-                <div id="case-study-impact-column">
-                    <h4 class="font-semibold text-gray-700 text-center mb-2">Quantifiable Impact</h4>
-                    <p class="text-gray-600 text-center text-sm mb-4">${data.impact.description}</p>
-                    <div class="chart-container"><canvas id="impactChart"></canvas></div>
+                <div>
+                    ${impactContent}
                 </div>
             </div>`;
 
-        // Render the chart if chart data exists
-        if (data.impact.chartData) {
+        if (currentChart) currentChart.destroy();
+
+        // Only create a chart if there is no custom HTML and chart data exists
+        if (!data.impact.customHtml && data.impact.chartData) {
             const ctx = document.getElementById('impactChart').getContext('2d');
             currentChart = new Chart(ctx, {
                 type: data.impact.chartType,
@@ -205,32 +203,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 options: { responsive: true, maintainAspectRatio: false, ...data.impact.chartOptions }
             });
         }
-        
-        // If custom HTML exists, append it to the right column
-        if (data.impact.customHtml) {
-            const impactColumn = document.getElementById('case-study-impact-column');
-            if (impactColumn) {
-                impactColumn.innerHTML += data.impact.customHtml;
-            }
-        }
-        
-        // Update active tab styles
+
         tabs.forEach(t => t.classList.remove('case-study-tab-active'));
         document.querySelector(`[data-tab="${tabId}"]`).classList.add('case-study-tab-active');
     }
 
-    // Add event listeners
     tabs.forEach(tab => tab.addEventListener('click', () => updateCaseStudyView(tab.dataset.tab)));
-    
-    // Initial load
     updateCaseStudyView('case1');
 
-    // Mobile menu toggle
     document.getElementById('mobile-menu-button').addEventListener('click', () => {
         document.getElementById('mobile-menu').classList.toggle('hidden');
     });
 
-    // Intersection observer for nav link highlighting
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('section');
     const observer = new IntersectionObserver(entries => {
