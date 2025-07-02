@@ -480,7 +480,12 @@
             function updateCaseStudyView(tabId) {
                 const data = caseStudyData[tabId];
                 if (!data) return;
-
+// Conditionally create the content for the right-side grid column
+        const impactContent = data.impact.customHtml
+            ? data.impact.customHtml // If custom HTML exists, use it
+            : `<h4 class="font-semibold text-gray-700 text-center mb-2">Quantifiable Impact</h4>
+               <p class="text-gray-600 text-center text-sm mb-4">${data.impact.description}</p>
+               <div class="chart-container"><canvas id="impactChart"></canvas></div>`;
                 contentContainer.innerHTML = `
                     <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                         <div>
