@@ -459,23 +459,22 @@
                         }
                     }
                 },
-            case6:{
-                    {
+            case6: {
     title: 'Sequence Diagram for Data Flagging Process',
-    organization: 'Sample GitHub Repository',
+    organization: 'GitHub Repository: karharutyunyan/karenharutyunyanportfolio',
     challenge: 'Needed to clearly document and visualize complex data migration and validation workflows involving multiple internal and external services.',
     actions: [
-        '<b>Created UML Sequence Diagram:</b> Using tools like draw.io, documented the interactions between actors and services.',
-        '<b>GitHub Storage:</b> Committed diagram source files and images to a structured GitHub repo for version control and easy sharing.',
-        '<b>Integration:</b> Linked the diagrams to documentation (Markdown READMEs) for stakeholder visibility.'
+        '<b>Created UML Sequence Diagram:</b> Using draw.io to document the interactions between systems.',
+        '<b>Version Controlled:</b> Stored the diagrams in a GitHub repository for collaboration and traceability.',
+        '<b>Linked to Docs:</b> Embedded into markdown READMEs for easier stakeholder reviews.'
     ],
     impact: {
-        description: 'Improved clarity of workflows, enabling faster onboarding of new developers and easier discussions with stakeholders.',
+        description: 'Improved technical onboarding and streamlined discussions with clear process visibility.',
         chartType: 'bar',
         chartData: {
             labels: ['Before Diagram', 'After Diagram'],
             datasets: [{
-                label: 'Workflow Clarity (Score)',
+                label: 'Workflow Clarity',
                 data: [60, 95],
                 backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(20, 184, 166, 0.6)'],
                 borderColor: ['rgba(255, 99, 132, 1)', 'rgba(20, 184, 166, 1)'],
@@ -485,10 +484,22 @@
         chartOptions: {
             scales: { y: { beginAtZero: true, max: 100, ticks: { callback: value => value + '%' } } },
             plugins: { legend: { display: false } }
-        }
+        },
+        // 🔥 Custom HTML for your diagram image
+        customHtml: `
+            <div style="text-align:center; margin-top:20px;">
+                <img src="https://raw.githubusercontent.com/karharutyunyan/karenharutyunyanportfolio/main/sequence-diagram.png"
+                     alt="Sequence Diagram"
+                     style="max-width:100%; border-radius:12px; box-shadow:0 2px 6px rgba(0,0,0,0.1);" />
+                <p style="margin-top:8px; color:#6b7280; font-size:0.9rem;">
+                    Diagram hosted in <a href="https://github.com/karharutyunyan/karenharutyunyanportfolio" target="_blank" style="color:#14B8A6; font-weight:500;">
+                    GitHub Repository</a>.
+                </p>
+            </div>
+        `
     }
 }
-                
+
 };
          
             const contentContainer = document.getElementById('case-study-content');
