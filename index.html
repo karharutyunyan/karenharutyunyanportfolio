@@ -101,6 +101,7 @@
                 <button data-tab="case2" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Data-Driven Optimization</button>
                 <button data-tab="case4" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Digital Onboarding</button>
                 <button data-tab="case3" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Agile Transformation</button>
+                <button data-tab="case6" class="case-study-tab px-4 py-2 rounded-lg border-2 border-transparent transition-all duration-300">Diagramming</button>
             </div>
 
             <div id="case-study-content" class="bg-white rounded-2xl shadow-sm p-6 md:p-12 overflow-hidden">
@@ -437,7 +438,26 @@
                         }
                     }
                 }
-            };
+            },
+                case6: {
+            title:'Sequence Diagram for Data Flagging Process',
+            organization:'GitHub Repo: karharutyunyan/karenharutyunyanportfolio',
+            challenge:'Needed clear multi-service flow docs.',
+            actions:['Made UML in draw.io','Versioned in GitHub','Linked in markdown'],
+            impact:{
+                description:'Improved dev onboarding.',
+                customHtml:`<div style="text-align:center;margin-top:20px;">
+                    <img src="https://raw.githubusercontent.com/karharutyunyan/karenharutyunyanportfolio/main/sequence-diagram.png"
+                         alt="Sequence Diagram"
+                         style="max-width:100%;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,0.1);"/>
+                    <p style="margin-top:8px;color:#6b7280;font-size:0.9rem;">
+                        Diagram hosted on <a href="https://github.com/karharutyunyan/karenharutyunyanportfolio" target="_blank"
+                        style="color:#14B8A6;font-weight:500;">GitHub</a>.
+                    </p></div>`
+            }
+        }
+    };
+
             
             const contentContainer = document.getElementById('case-study-content');
             const tabs = document.querySelectorAll('.case-study-tab');
