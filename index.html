@@ -460,7 +460,8 @@
                     }
                 },
             case6:{
-                    title: 'Sequence Diagram for Data Flagging Process',
+                    {
+    title: 'Sequence Diagram for Data Flagging Process',
     organization: 'Sample GitHub Repository',
     challenge: 'Needed to clearly document and visualize complex data migration and validation workflows involving multiple internal and external services.',
     actions: [
@@ -485,11 +486,10 @@
             scales: { y: { beginAtZero: true, max: 100, ticks: { callback: value => value + '%' } } },
             plugins: { legend: { display: false } }
         }
-         
- 
     }
+}
                 
-}};
+};
          
             const contentContainer = document.getElementById('case-study-content');
             const tabs = document.querySelectorAll('.case-study-tab');
